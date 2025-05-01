@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Friend Requests</h1>
+<ul>
+    {% for request in friend_requests %}
+        <li>{{ request.from_user.username }}
+            <form method="post">
+                {% csrf_token %}
+                <button name="action" value="accept_{{ request.id }}">Accept</button>
+                <button name="action" value="reject_{{ request.id }}">Reject</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Post by {{ post.author.username }}</h1>
+<p>{{ post.content }}</p>
+<p>Posted on {{ post.created_at }}</p>
+
+<!-- Show reactions count -->
+<p>Likes: {{ post.reactions.all|length }}</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" name="reaction" value="like">Like</button>
+</form>
+
+<h2>Comments</h2>
+<ul>
+    {% for comment in post.comments.all %}
+        <li><strong>{{ comment.author.username }}:</strong> {{ comment.content }} ({{ comment.created_at }})</li>
+    {% endfor %}
+</ul>
+
+<form method="post">
+    {% csrf_token %}
+    <label>
+        <textarea name="comment_content" rows="3" cols="50" placeholder="Write a comment..."></textarea>
+    </label><br>
+    <button type="submit" name="action" value="add_comment">Add Comment</button>
+</form>
+{% endblock %}

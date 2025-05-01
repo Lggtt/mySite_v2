@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Your Inbox</h1>
+<ul>
+    {% for msg in messages %}
+        <li>
+            <strong>{{ msg.sender.username }}</strong>: {{ msg.content|truncatewords:10 }}
+            <small>{{ msg.timestamp }}</small>
+            {% if not msg.read %}
+                <span style="color:red;">(New)</span>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

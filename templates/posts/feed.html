@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Your Feed</h1>
+<a href="{% url 'posts:create_post' %}">Create a new post</a>
+<ul>
+    {% for post in posts %}
+        <li>
+            <strong>{{ post.author.username }}</strong>: 
+            <a href="{% url 'posts:post_detail' post.id %}">{{ post.content|truncatewords:20 }}</a>
+            <small>{{ post.created_at }}</small>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

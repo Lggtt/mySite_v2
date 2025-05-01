@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ profile.user.username }}'s Profile</h1>
+<img src="{{ profile.avatar.url }}" alt="{{ profile.user.username }}'s avatar" style="max-width:100px;">
+<p>{{ profile.bio }}</p>
+<p>Visibility: {{ profile.get_profile_visibility_display }}</p>
+{% endblock %}

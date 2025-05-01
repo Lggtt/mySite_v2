@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Your Notifications</h1>
+<ul>
+    {% for notif in notifications %}
+        <li>
+            {{ notif.text }} - {{ notif.created_at }}
+            <form method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" name="action" value="mark_read_{{ notif.id }}">Mark as Read</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
